@@ -6,6 +6,7 @@ from path_expansion import *
 from threading import Thread
 from signal_handling import *
 
+
 def show_prompt():
     """
     show the prompt and basically cope with user's input.
@@ -13,7 +14,6 @@ def show_prompt():
     print('intek-sh$ ', end='')
     command = input()
     return command.split()
-
 
 
 def get_dir(command, current_path):
