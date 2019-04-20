@@ -311,6 +311,14 @@ def deal_path_expansion(command_list, previous_path, current_path):
 
 
 def is_in_environent(value):
+    """
+    checking wheather the value in in environ or local variables or not.
+    Args:
+        value (string): name of variable
+    Returns:
+        boolean: True if it is in environ of local variables, false if it is
+        not
+    """
     global local_variable
     if value in environ:
         return True
@@ -346,6 +354,11 @@ def expanded_features(value, previous_path, current_path):
 
 
 def unseted_variable(command):
+    """
+    unset a varialbe and its value if it is in local variable dictionary.
+    Args:
+        command (string): name of the variable
+    """
     global local_variable, unseted_list
     for value in command:
         if value in local_variable:
