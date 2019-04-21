@@ -9,12 +9,13 @@ local_variable = {}
 unseted_list = []
 
 
-def cope_with_tilde(command_list, previous_path, current_path):
+def cope_with_tilde(command_list, previouss_path, current_path):
+
     """
     cope single and multiple tidle.
     Args:
         command_list (list): list contains command
-        previous_path(string): path of previous working directory
+        previouss_path(string): path of previous working directory
         current_path(string): path of current working directory
     Returns:
         list: modified list
@@ -22,14 +23,14 @@ def cope_with_tilde(command_list, previous_path, current_path):
     # if the first part of the firt partition of list is ~ then considering
     # it as a sigle tidle and call relevant function.
     if command_list[0][0] is '~' and len(command_list) == 1:
-        command_list = cope_single_tidle(command_list, previous_path,
+        command_list = cope_single_tidle(command_list, previouss_path,
                                          current_path)
         return command_list
     # if len of the command_list is more than 1 and the firt character of then
     # first partition is not ~ then considering it as a multiple tidle and
     # call the relevant function.
     elif len(command_list) > 1 and '~' not in command_list[0]:
-        command_list = cope_with_multiple_tidle(command_list, previous_path,
+        command_list = cope_with_multiple_tidle(command_list, previouss_path,
                                                 current_path)
         return command_list
 
@@ -165,7 +166,7 @@ def has_bad_substitution(value):
 
     # if bracket has irregular character inside then True
     try:
-        item = ['.', '#', '!', '%', '*', '@', '&', '(', ')', '{', '//', "//",
+        item = ['.', '!', '%', '*', '@', '&', '(', ')', '{', '//', "//",
                 '[', ']', '^']
         if any(x in value for x in item):
             return True
@@ -192,9 +193,13 @@ def deal_multiple_parameter(value):
         TypeError
 
     """
-
-    start_point = value.find('{')
-    end_point = value.find('}')
+    global previous_path
+    current_path = getcwd()
+    find_dollar = value.find('$') + 1
+    start_point = find_dollar + value[find_dollar:].find('{')
+    end_point = find_dollar + value[find_dollar:].find('}')
+    list_param = [':-', '-', ':=', '=', ':?', '?', ':+', '+', '%', '#']
+    partition = ''
     try:
         # consider the case of parameter and call suitable function.
         if value[start_point - 1] == '$':
@@ -202,13 +207,24 @@ def deal_multiple_parameter(value):
             if has_bad_substitution(value[start_point + 1: end_point]):
                 print('intek-sh: ' + value + ': bad substitution')
                 return
-            partition = deal_parameter('$' + value[start_point + 1:end_point])
+            for item in list_param:
+                if item in value[start_point + 1: end_point]:
+                    partition = expanded_features(value[start_point + 1
+                                                        :end_point],
+                                                  previous_path, current_path)
+                    break
+            if partition == '':
+                partition = deal_parameter('$' +
+                                           value[start_point + 1:
+                                                 end_point])
             value = value[:start_point - 1] + partition + value[end_point + 1:]
+            if 'intek-sh' in partition:
+                return partition
         elif value[start_point - 1] != '$':
-            value = value[start_point:]
+            value = value[:find_dollar - 1] + value[start_point:]
         # recursive to deal with multiple parameter expansions
         if '$' in value:
-            value = deal_parameter(value)
+            return deal_parameter(value)
     except TypeError:
         pass
     return value
@@ -222,7 +238,7 @@ def find_special_character(value):
     Returns:
         int: the index of the first special char in the value or a len of value
     """
-    item = '.#!%*@&(){/\\[]^'
+    item = '.!*@&()/\\[]^$'
     for index in range(len(value)):
         if value[index] in item:
             return index
@@ -252,8 +268,7 @@ def deal_single_parameter(value):
         elif value[start_point:end_point] in local_variable:
             return local_variable[value[start_point:end_point]] + \
                     value[end_point:]
-        else:
-            return ''
+        return ''
     # elif $ live in the middle of the command line, using this chains to deal
     else:
         if value[start_point:end_point] in environ:
@@ -264,8 +279,7 @@ def deal_single_parameter(value):
             return value[:start_point - 1] + \
                    local_variable[value[start_point:end_point]] + \
                    value[end_point:]
-        else:
-            return value[:start_point - 1] + value[end_point:]
+        return value[:start_point - 1] + value[end_point:]
 
 
 def deal_parameter(value):
@@ -279,9 +293,11 @@ def deal_parameter(value):
     """
 
     global local_vaiable
-    if '{' and '}' not in value:
+    start_point = value.find('$') + 1
+    end_point = start_point + find_special_character(value[start_point:])
+    if '{' and '}' not in value[start_point:end_point]:
         return deal_single_parameter(value)
-    if '{' in value or '}' in value:
+    if '{' in value and '}' in value:
         return deal_multiple_parameter(value)
     return ''
 
@@ -328,30 +344,120 @@ def is_in_environent(value):
 
 
 def expanded_features(value, previous_path, current_path):
-    global local_variable, unseted_list
-    if ':-' in value:
-        result = value.split(':-')
-        if not is_in_environent(result[0]):
+    global local_variable
+    try:
+        if ':-' in value:
+            result = value.split(':-')
+            if not is_in_environent(result[0]):
+                return result[1]
+            else:
+                if local_variable[result[0]] is None and environ[result[0]]\
+                        is None:
+                    return result[1]
+                else:
+                    if local_variable[result[0]]:
+                        return local_variable[result[0]]
+                    elif environ[result[0]]:
+                        return environ[result[0]]
+        elif '-' in value:
+            result = value.split('-')
+            if not is_in_environent(result[0]):
+                return result[1]
+            else:
+                if local_variable[result[0]] is None and environ[result[0]]\
+                        is None:
+                    return ''
+                else:
+                    if local_variable[result[0]]:
+                        return local_variable[result[0]]
+                    elif environ[result[0]]:
+                        return environ[result[0]]
+        elif ':=' in value:
+            result = value.split(':=')
+            if not is_in_environent(result[0]):
+                variable([result[0]+'='+result[1]], previous_path,
+                         current_path)
+                return local_variable[result[0]]
+            else:
+                if environ[result[0]] is not None:
+                    return environ[result[0]]
+                elif local_variable[result[0]] is not None:
+                    return local_variable[result[0]]
+                else:
+                    variable([result[0] + '=' + result[1]], previous_path,
+                             current_path)
+                    return local_variable[result[0]]
+        elif '=' in value:
+            result = value.split('=')
+            if not is_in_environent(result[0]):
+                variable([result[0]+'='+result[1]], previous_path,
+                         current_path)
+                return local_variable[result[0]]
+            else:
+                if environ[result[0]] is not None:
+                    return environ[result[0]]
+                elif local_variable[result[0]] is not None:
+                    return local_variable[result[0]]
+                else:
+                    return ''
+        elif ':?' in value:
+            result = value.split(':?')
+            if not is_in_environent(result[0]):
+                return 'intek-sh: ' + result[0] +': ' + result[1]
+            else:
+                if environ[result[0]] is not None:
+                    return environ[result[0]]
+                elif local_variable[result[0]] is not None:
+                    return local_variable[result[0]]
+                else:
+                    return 'intek-sh: ' + result[0] +': ' + result[1]
+        elif '?' in value:
+            result = value.split('?')
+            if not is_in_environent(result[0]):
+                return 'intek-sh: ' + result[0] + ': ' + result[1]
+            else:
+                if environ[result[0]] is not None:
+                    return environ[result[0]]
+                elif local_variable[result[0]] is not None:
+                    return local_variable[result[0]]
+                else:
+                    return ''
+        elif ':+' in value:
+            result = value.split(':+')
+            if not is_in_environent(result[0]):
+                return ''
+            else:
+                return result[1]
+        elif '+' in value:
+            result = value.split('+')
+            if not is_in_environent(result[0]):
+                return ''
             return result[1]
-        elif is_in_environent(result[0]):
-            if local_variable[result[0]] is None or environ[result[0]] is None:
-                return result[1]
-            return local_variable[result[0]]
-    elif '-' in value:
-        result = value.split('-')
-        if not is_in_environent(result[0]):
-            if result[0] in unseted_list:
-                return result[1]
-    elif ':?' in value:
-        if not is_in_environent(value.split(':?')[0]):
-            result = sub(':?', '=', value)
-            variable(result, previous_path, current_path)
-    elif '=' in value:
-        result = value.split('=')
-        if not is_in_environent(result[0]):
-            if result[0] in unseted_list:
-                pass
-
+        elif value[0] is '#':
+            result = value[1:]
+            if not is_in_environent(result):
+                return str(0)
+            return str(len(value) - 1)
+        elif '%%' in value and value.count('%') == 2:
+            result= value.split('%%')
+            if is_in_environent(result[0]):
+                if environ[result[0]]:
+                    new_one = sub(result[1], '', environ[result[0]])
+                    return new_one
+                elif local_variable[result[0]]:
+                    new_one = sub(result[1], '', local_variable[result[0]])
+                    return new_one
+        elif '%' in value and value.count('%') == 1:
+            result= value.split('%')
+            if is_in_environent(result[0]):
+                if environ[result[0]]:
+                    new_one = sub(result[1], '', environ[result[0]])
+                    return new_one
+                elif local_variable[result[0]]:
+                    new_one = sub(result[1], '', local_variable[result[0]])
+                    return new_one
+    except KeyError:
+        pass
 
 def unseted_variable(command):
     """

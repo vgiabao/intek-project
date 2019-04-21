@@ -5,6 +5,7 @@ from path_expansion import *
 # from dynamic_command_completion import *
 from threading import Thread
 from signal_handling import *
+from dynamic_command_completion import *
 
 
 def show_prompt():
@@ -13,6 +14,8 @@ def show_prompt():
     """
     print('intek-sh$ ', end='')
     command = input()
+    history(command)
+
     return command.split()
 
 
