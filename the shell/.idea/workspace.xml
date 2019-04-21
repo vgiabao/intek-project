@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/../minishell/intek-sh.py" beforeDir="false" afterPath="$PROJECT_DIR$/../minishell/intek-sh.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../minishell/minish.py" beforeDir="false" afterPath="$PROJECT_DIR$/../minishell/minish.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dynamic command completion.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dynamic_command_completion.py" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic_command_completion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/intek-sh.py" beforeDir="false" afterPath="$PROJECT_DIR$/intek-sh.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/path_expansion.py" beforeDir="false" afterPath="$PROJECT_DIR$/path_expansion.py" afterDir="false" />
     </list>
@@ -16,14 +16,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4997233">
+    <splitter split-orientation="horizontal" split-proportion="0.47703376">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/intek-sh.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1311">
-                  <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+                <state relative-caret-position="616">
+                  <caret line="225" column="22" lean-forward="true" selection-start-line="225" selection-start-column="22" selection-end-line="225" selection-end-column="22" />
                   <folding>
                     <element signature="e#23#89#0" expanded="true" />
                   </folding>
@@ -31,13 +31,13 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/path_expansion.py">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/dynamic_command_completion.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-96">
-                  <caret line="301" column="13" lean-forward="true" selection-start-line="301" selection-start-column="13" selection-end-line="301" selection-end-column="13" />
+                <state relative-caret-position="418">
+                  <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
                   <folding>
-                    <element signature="e#0#30#0" expanded="true" />
+                    <element signature="e#23#160#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -48,13 +48,10 @@
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/path_expansion.py">
+            <entry file="file://$USER_HOME$/Downloads/test the shell/buildin.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-4268">
-                  <caret line="225" selection-start-line="225" selection-end-line="226" selection-end-column="40" />
-                  <folding>
-                    <element signature="e#0#30#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="38">
+                  <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-end-line="3" />
                 </state>
               </provider>
             </entry>
@@ -72,9 +69,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>variable</find>
       <find>find_s</find>
       <find>deal_path</find>
+      <find>variable</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -84,9 +81,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/dynamic command completion.py" />
-        <option value="$PROJECT_DIR$/intek-sh.py" />
         <option value="$PROJECT_DIR$/dynamic_command_completion.py" />
         <option value="$PROJECT_DIR$/path_expansion.py" />
+        <option value="$USER_HOME$/Downloads/signals_handling (1).py" />
+        <option value="$PROJECT_DIR$/intek-sh.py" />
+        <option value="$PROJECT_DIR$/signal_handling.py" />
+        <option value="$USER_HOME$/Downloads/test the shell/buildin.py" />
+        <option value="$USER_HOME$/Downloads/test the shell/path_expansion .py" />
+        <option value="$USER_HOME$/Downloads/path_expansion .py" />
       </list>
     </option>
   </component>
@@ -165,15 +167,16 @@
       <workItem from="1554101404177" duration="91000" />
       <workItem from="1555734969831" duration="4103000" />
       <workItem from="1555746158150" duration="20650000" />
-      <workItem from="1555815530158" duration="10780000" />
+      <workItem from="1555815530158" duration="29534000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35624000" />
+    <option name="totallyTimeSpent" value="54378000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.25235197" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -189,7 +192,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Pylint" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.38012958" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -198,6 +201,30 @@
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25235197" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Pylint" order="9" />
+      <window_info anchor="bottom" id="Database Changes" order="10" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.38012958" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -210,20 +237,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/python_stubs/-1247971763/readline.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/signals_handling (1).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-447">
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/signal_handling.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/signals_handling .py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/dynamic_command_completion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+        <state relative-caret-position="418">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
-            <element signature="e#23#38#0" expanded="true" />
+            <element signature="e#23#160#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/intek-sh.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1311">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+        <state relative-caret-position="616">
+          <caret line="225" column="22" lean-forward="true" selection-start-line="225" selection-start-column="22" selection-end-line="225" selection-end-column="22" />
           <folding>
             <element signature="e#23#89#0" expanded="true" />
           </folding>
@@ -232,11 +279,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/path_expansion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4268">
-          <caret line="225" selection-start-line="225" selection-end-line="226" selection-end-column="40" />
+        <state relative-caret-position="1252">
+          <caret line="468" column="28" selection-start-line="468" selection-start-column="28" selection-end-line="468" selection-end-column="28" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/path_expansion .py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="237" column="24" selection-start-line="237" selection-start-column="24" selection-end-line="237" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/test the shell/path_expansion .py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/test the shell/buildin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-end-line="3" />
         </state>
       </provider>
     </entry>

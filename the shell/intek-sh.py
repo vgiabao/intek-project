@@ -4,9 +4,8 @@ import subprocess as s
 from path_expansion import *
 # from dynamic_command_completion import *
 from threading import Thread
-from signal_handling import *
-from dynamic_command_completion import *
-
+# from signal_handling import *
+# from dynamic_command_completion import *
 
 def show_prompt():
     """
@@ -14,7 +13,7 @@ def show_prompt():
     """
     print('intek-sh$ ', end='')
     command = input()
-    history(command)
+    # history(command)
 
     return command.split()
 
@@ -26,7 +25,7 @@ def get_dir(command, current_path):
         command (string): A list contains action and the expected directory
         path which is wanted to move on.
     Raises:
-        Exception: raises some errors in case of the expected directory is
+        KeyError: raises some errors in case of the expected directory is
         not existing, it is a file or some Permission problems.
     """
     # get the current working directory path.
@@ -195,7 +194,7 @@ def main():
     while True:
         previous_path, current_path = get_cwd()
         try:
-            handling_signals()
+            # handling_signals()
             previous_command = show_prompt()
             command = deal_path_expansion(previous_command, previous_path,
                                           current_path)

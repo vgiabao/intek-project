@@ -209,15 +209,16 @@ def deal_multiple_parameter(value):
                 return
             for item in list_param:
                 if item in value[start_point + 1: end_point]:
-                    partition = expanded_features(value[start_point + 1
-                                                        :end_point],
+                    partition = expanded_features(value[start_point + 1:
+                                                        end_point],
                                                   previous_path, current_path)
                     break
             if partition == '':
                 partition = deal_parameter('$' +
                                            value[start_point + 1:
                                                  end_point])
-            value = value[:start_point - 1] + partition + value[end_point + 1:]
+            value = value[:start_point - 1] + partition + \
+                    value[end_point + 1:]
             if 'intek-sh' in partition:
                 return partition
         elif value[start_point - 1] != '$':
@@ -403,14 +404,14 @@ def expanded_features(value, previous_path, current_path):
         elif ':?' in value:
             result = value.split(':?')
             if not is_in_environent(result[0]):
-                return 'intek-sh: ' + result[0] +': ' + result[1]
+                return 'intek-sh: ' + result[0] + ': ' + result[1]
             else:
                 if environ[result[0]] is not None:
                     return environ[result[0]]
                 elif local_variable[result[0]] is not None:
                     return local_variable[result[0]]
                 else:
-                    return 'intek-sh: ' + result[0] +': ' + result[1]
+                    return 'intek-sh: ' + result[0] + ': ' + result[1]
         elif '?' in value:
             result = value.split('?')
             if not is_in_environent(result[0]):
@@ -439,7 +440,7 @@ def expanded_features(value, previous_path, current_path):
                 return str(0)
             return str(len(value) - 1)
         elif '%%' in value and value.count('%') == 2:
-            result= value.split('%%')
+            result = value.split('%%')
             if is_in_environent(result[0]):
                 if environ[result[0]]:
                     new_one = sub(result[1], '', environ[result[0]])
@@ -448,7 +449,7 @@ def expanded_features(value, previous_path, current_path):
                     new_one = sub(result[1], '', local_variable[result[0]])
                     return new_one
         elif '%' in value and value.count('%') == 1:
-            result= value.split('%')
+            result = value.split('%')
             if is_in_environent(result[0]):
                 if environ[result[0]]:
                     new_one = sub(result[1], '', environ[result[0]])
